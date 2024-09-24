@@ -1,0 +1,3 @@
+[submodule "tbot"]
+	path = tbot
+	url = https://gitlab.com/iovxw/tbot

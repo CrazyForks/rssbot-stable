@@ -46,7 +46,7 @@ atomicwrites = "0.4"
 
 [dependencies.tbot]
 version = "0.6"
-git = "https://gitlab.com/SnejUgal/tbot.git"
+path = "tbot"
 default-features = false
 features = ["proxy"]
 
