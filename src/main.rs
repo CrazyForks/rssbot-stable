@@ -1,4 +1,4 @@
-#![feature(error_reporter)]
+
 #![recursion_limit = "256"]
 
 use std::convert::TryInto;
@@ -164,12 +164,14 @@ fn init_proxy() -> Option<Proxy> {
         })
         .ok()
 }
-
-fn print_error<E: std::error::Error>(err: E) {
-    eprintln!(
-        "Error: {}",
-        std::error::Report::new(err)
-            .pretty(true)
-            .show_backtrace(true)
-    );
+fn print_error<E>(err: E)
+where
+    E: std::error::Error
+{
+    eprintln!("Error: {}", err);
+    let mut source = err.source();
+    while let Some(err) = source {
+        eprintln!("Caused by: {}", err);
+        source = err.source();
+    }
 }
